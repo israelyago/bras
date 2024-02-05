@@ -88,8 +88,17 @@ impl From<Cpf> for u64 {
 impl TryFrom<u64> for Cpf {
     type Error = ParseCpfError;
 
+    /// ```
+    /// use bras::Cpf;
+    /// # use bras::ParseCpfError;
+    ///
+    /// let cpf: Cpf = Cpf::try_from(1678346063)?;
+    /// assert_eq!("016.783.460-63", cpf.to_string());
+    /// 
+    /// # Ok::<(), ParseCpfError>(())
+    /// ```
     fn try_from(value: u64) -> Result<Self, Self::Error> {
-        Cpf::from_str(&value.to_string())
+        Cpf::new(format!("{:011}", value))
     }
 }
 
