@@ -62,7 +62,7 @@ impl FromStr for Cpf {
 
 impl From<Cpf> for String {
     fn from(cpf: Cpf) -> Self {
-        let value_as_str = cpf.inner.to_string();
+        let value_as_str = format!("{:011}", cpf.inner);
         let a = &value_as_str[0..3];
         let b = &value_as_str[3..6];
         let c = &value_as_str[6..9];
@@ -206,6 +206,9 @@ mod test {
 
         let cpf = Cpf::from_str("984.844.854-39").unwrap();
         assert_eq!("984.844.854-39", cpf.to_string());
+
+        let cpf = Cpf::from_str("05119439039").unwrap();
+        assert_eq!("051.194.390-39", cpf.to_string());
     }
 
     #[test]
