@@ -1,3 +1,19 @@
+# Examples
+```rust
+use core::str::FromStr;
+use bras::{Cpf, ParseCpfError};
+
+fn main() -> Result<(), ParseCpfError>{
+
+    let cpf = Cpf::try_from(1678346063)?;
+    let cpf = "01678346063".parse::<Cpf>()?;
+    let cpf: Cpf = "01678346063".parse()?;
+    let cpf = Cpf::from_str("01678346063")?; // Need: use core::str::FromStr;
+
+    Ok(())
+}
+```
+
 ## License
 
 Licensed under either of
